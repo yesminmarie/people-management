@@ -14,16 +14,16 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address save(Address address) {
-        findIfPersonHasAnotherMainAddressAndSetItToFalse(address);
+        if (address.isMain()) {
+            findIfPersonHasAnotherMainAddressAndSetItToFalse(address);
+        }
         return addressesRepository.save(address);
     }
 
-    private void findIfPersonHasAnotherMainAddressAndSetItToFalse(Address address){
-        if(address.isMain()){
-            Address mainAddress = addressesRepository.findByMainTrueAndPerson(address.getPerson());
-            if(mainAddress != null){
-                mainAddress.setMain(false);
-            }
+    private void findIfPersonHasAnotherMainAddressAndSetItToFalse(Address address) {
+        Address mainAddress = addressesRepository.findByMainTrueAndPerson(address.getPerson());
+        if (mainAddress != null) {
+            mainAddress.setMain(false);
         }
     }
 }
