@@ -1,5 +1,6 @@
 package io.github.yesminmarie.peoplemanagement.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +22,9 @@ public class Address {
 
     private String city;
 
+    private boolean main;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;

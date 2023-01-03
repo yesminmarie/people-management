@@ -1,6 +1,7 @@
 package io.github.yesminmarie.peoplemanagement.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,6 +23,7 @@ public class Person {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Set<Address> adresses;
+    @JsonIgnore
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+    private Set<Address> addresses;
 }

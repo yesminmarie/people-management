@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface PersonsRepository extends JpaRepository<Person, Long> {
 
-    @Query("select p from Person p left join fetch p.adresses where p.id = :id")
+    @Query("select p from Person p left join fetch p.addresses where p.id = :id")
     Person findPersonFetchAddress(@Param("id") Long id);
 }
