@@ -20,7 +20,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person getClienteById(Long id) {
+    public Person getPersonById(Long id) {
         return personsRepository
                 .findById(id)
                 .orElseThrow(() ->

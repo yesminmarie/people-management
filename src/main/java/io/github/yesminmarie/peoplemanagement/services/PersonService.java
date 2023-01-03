@@ -5,5 +5,5 @@ import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 public interface PersonService {
     Person save(Person person);
 
-    Person getClienteById(Long id);
+    Person getPersonById(Long id);
 }

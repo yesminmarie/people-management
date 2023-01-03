@@ -1,10 +1,15 @@
 package io.github.yesminmarie.peoplemanagement.services.impl;
 
 import io.github.yesminmarie.peoplemanagement.domain.entities.Address;
+import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 import io.github.yesminmarie.peoplemanagement.domain.repositories.AddressesRepository;
 import io.github.yesminmarie.peoplemanagement.services.AddressService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +23,23 @@ public class AddressServiceImpl implements AddressService {
             findIfPersonHasAnotherMainAddressAndSetItToFalse(address);
         }
         return addressesRepository.save(address);
+    }
+
+    @Override
+    public Set<Address> getPersonAddresses(Person person) {
+        return addressesRepository.findByPerson(person);
+    }
+
+    @Override
+    public void updateMainAddress(Long idAddress) {
+        Address findedAddress = addressesRepository
+                .findById(idAddress)
+                .orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Address not found."));
+
+        findIfPersonHasAnotherMainAddressAndSetItToFalse(findedAddress);
+        findedAddress.setMain(true);
+        addressesRepository.save(findedAddress);
     }
 
     private void findIfPersonHasAnotherMainAddressAndSetItToFalse(Address address) {
