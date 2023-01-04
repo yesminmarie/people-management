@@ -32,14 +32,14 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void updateMainAddress(Long idAddress) {
-        Address findedAddress = addressesRepository
+        Address foundAddress = addressesRepository
                 .findById(idAddress)
                 .orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Address not found."));
 
-        findIfPersonHasAnotherMainAddressAndSetItToFalse(findedAddress);
-        findedAddress.setMain(true);
-        addressesRepository.save(findedAddress);
+        findIfPersonHasAnotherMainAddressAndSetItToFalse(foundAddress);
+        foundAddress.setMain(true);
+        addressesRepository.save(foundAddress);
     }
 
     private void findIfPersonHasAnotherMainAddressAndSetItToFalse(Address address) {
