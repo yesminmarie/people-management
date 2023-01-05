@@ -2,6 +2,7 @@ package io.github.yesminmarie.peoplemanagement.services.impl;
 
 import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 import io.github.yesminmarie.peoplemanagement.domain.repositories.PersonsRepository;
+import io.github.yesminmarie.peoplemanagement.exceptions.PersonNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -53,9 +53,9 @@ class PersonServiceImplTest {
     @Test
     @DisplayName("Check if an exception is thrown if the inserted id is incorrect.")
     public void checkIfAnExceptionIsThrownIfTheInsertedIdIsIncorrect(){
-        Exception exception = assertThrows(ResponseStatusException.class,
+        Exception exception = assertThrows(PersonNotFoundException.class,
                 () -> personService.getPersonById(1L));
-        assertEquals("404 NOT_FOUND \"Person not found.\"", exception.getMessage());
+        assertEquals("Person not found.", exception.getMessage());
     }
 
     @Test
@@ -95,9 +95,9 @@ class PersonServiceImplTest {
         LocalDate birthDate = LocalDate.of(1990, 10, 5);
         Person person = createPerson(1L, "Ana", birthDate);
 
-        Exception exception = assertThrows(ResponseStatusException.class,
+        Exception exception = assertThrows(PersonNotFoundException.class,
                 () -> personService.update(2L, person));
-        assertEquals("404 NOT_FOUND \"Person not found.\"", exception.getMessage());
+        assertEquals("Person not found.", exception.getMessage());
     }
 
     @Test

@@ -3,11 +3,10 @@ package io.github.yesminmarie.peoplemanagement.services.impl;
 import io.github.yesminmarie.peoplemanagement.domain.entities.Address;
 import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 import io.github.yesminmarie.peoplemanagement.domain.repositories.AddressesRepository;
+import io.github.yesminmarie.peoplemanagement.exceptions.AddressNotFoundException;
 import io.github.yesminmarie.peoplemanagement.services.AddressService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Set;
 
@@ -35,7 +34,7 @@ public class AddressServiceImpl implements AddressService {
         Address foundAddress = addressesRepository
                 .findById(idAddress)
                 .orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Address not found."));
+                new AddressNotFoundException());
 
         findIfPersonHasAnotherMainAddressAndSetItToFalse(foundAddress);
         foundAddress.setMain(true);

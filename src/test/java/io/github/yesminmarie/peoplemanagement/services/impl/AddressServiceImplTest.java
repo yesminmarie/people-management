@@ -3,20 +3,21 @@ package io.github.yesminmarie.peoplemanagement.services.impl;
 import io.github.yesminmarie.peoplemanagement.domain.entities.Address;
 import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 import io.github.yesminmarie.peoplemanagement.domain.repositories.AddressesRepository;
+import io.github.yesminmarie.peoplemanagement.exceptions.AddressNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddressServiceImplTest {
 
@@ -111,9 +112,9 @@ class AddressServiceImplTest {
     @Test
     @DisplayName("check if an exception is thrown if not found address when try updating the main address.")
     public void checkIfAnExceptionIsThrownIfNotFoundAddressWhenTryUpdatingTheMainAddress(){
-        Exception exception = assertThrows(ResponseStatusException.class,
+        Exception exception = assertThrows(AddressNotFoundException.class,
                 () -> addressService.updateMainAddress(1L));
-        assertEquals("404 NOT_FOUND \"Address not found.\"", exception.getMessage());
+        assertEquals("Address not found.", exception.getMessage());
 
     }
     private Address createAddress(Long id, String street, String zipCode, int number, String city, Person person, Boolean main){
