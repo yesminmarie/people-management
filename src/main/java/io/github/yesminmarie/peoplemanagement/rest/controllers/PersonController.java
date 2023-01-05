@@ -2,6 +2,7 @@ package io.github.yesminmarie.peoplemanagement.rest.controllers;
 
 import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 import io.github.yesminmarie.peoplemanagement.services.PersonService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,12 +20,12 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Person save(@RequestBody Person person){
+    public Person save(@Valid @RequestBody Person person){
         return personService.save(person);
     }
 
     @GetMapping("{id}")
-    public Person getPersonById(@PathVariable Long id){
+    public Person getPersonById(@Valid @PathVariable Long id){
         return personService.getPersonById(id);
     }
 

@@ -5,6 +5,7 @@ import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 import io.github.yesminmarie.peoplemanagement.rest.dto.RequestAddressDTO;
 import io.github.yesminmarie.peoplemanagement.services.AddressService;
 import io.github.yesminmarie.peoplemanagement.services.PersonService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class AddressController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Address save(@RequestBody RequestAddressDTO dto){
+    public Address save(@Valid @RequestBody RequestAddressDTO dto){
         Long idPerson = dto.getIdPerson();
         Person person = personService.getPersonById(idPerson);
 
