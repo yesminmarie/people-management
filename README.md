@@ -29,9 +29,9 @@ localhost:8080/swagger-ui.html</a> </p>
 
 <p>You will need these tools installed in your machine:</p>
 
-- Must have [Git](https://git-scm.com/ "Git") installed
-- At least have Java 17 installed
-- Must have Maven installed
+- It Must have [Git](https://git-scm.com/ "Git") installed
+- At least it has Java 17 installed
+- It Must have Maven installed
 
 ```bash
 # Clone this repository
@@ -64,7 +64,7 @@ cd people-management
 <p><strong> Example: <a href = "http://localhost:8080/persons?page=0&size=2">
 localhost:8080/persons?page=0&size=2 </a> </strong></p>
 
-- PUT - localhost:8080/persons/{id} (update a specific person)
+- PUT - localhost:8080/persons/{id} (Update a specific person)
 <p><strong>Example:</strong></p>
 
 ```bash
@@ -92,6 +92,6 @@ localhost:8080/persons?page=0&size=2 </a> </strong></p>
 }
 ```
 
-- PATCH - localhost:8080/addresses/{idAdress} (update the main address of a person, passing the address id that will be the main)
+- PATCH - localhost:8080/addresses/{idAdress} (Update the main address of a person, passing the address id that will be the main address)
 
 <h4>Made with ❤️ by Yesmin Marie</h4>
