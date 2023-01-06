@@ -2,6 +2,7 @@ package io.github.yesminmarie.peoplemanagement.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -24,6 +25,7 @@ public class Person {
 
     @Column(name = "birth_date")
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @Schema(type = "string", pattern = "dd/MM/yyyy", example = "20/10/1990")
     @NotNull(message = "Birth date must not be mull.")
     private LocalDate birthDate;
 
