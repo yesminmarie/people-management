@@ -1,6 +1,5 @@
 package io.github.yesminmarie.peoplemanagement.rest.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.yesminmarie.peoplemanagement.domain.entities.Person;
 import io.github.yesminmarie.peoplemanagement.services.PersonService;
 import org.hamcrest.Matchers;
